@@ -49,7 +49,7 @@ test/
 在 `test/preload.ts` 中做统一隔离（在测试前执行）：
 
 - 将 `HOME` / `XDG_CONFIG_HOME` / `XDG_DATA_HOME` / `XDG_CACHE_HOME` 指向临时目录
-- Windows 下同步处理 `APPDATA` / `LOCALAPPDATA` / `USERPROFILE`，路径拼接使用跨平台工具（如 Bun 可直接使用的 `node:path` 中 `path.join` / `path.resolve`）
+- Windows 下同步处理 `APPDATA` / `LOCALAPPDATA` / `USERPROFILE`，路径拼接使用跨平台工具（如 Bun 中 `path` 的 `path.join` / `path.resolve`）
 - 清空所有 provider 凭证类环境变量（如 `OPENAI_API_KEY`、`ANTHROPIC_API_KEY`、`AWS_*`、`AZURE_*`、`GOOGLE_*`）
 - 关闭测试期间不需要的行为：自动更新、遥测上报、在线模型拉取、插件自动发现
 - 所有测试结束后清理临时目录（建议带重试，兼容 Windows 文件句柄占用）
@@ -165,12 +165,12 @@ test/
     "test": "bun test",
     "test:unit": "bun test test/unit test/components",
     "test:e2e": "bun test test/e2e test/smoke",
-    "test:ci": "bun test --reporter=junit --reporter-outfile=./reports/junit.xml"
+    "test:ci": "bun test --reporter=junit --reporter-outfile=reports/junit.xml"
   }
 }
 ```
 
-> 建议在 CI 步骤里先创建 `./reports` 目录，再执行 `test:ci`（便于日志归档与脚本可读性）。
+> 建议在 CI 步骤里先创建 `reports` 目录，再执行 `test:ci`（便于日志归档与脚本可读性）。
 
 CI 建议：
 
