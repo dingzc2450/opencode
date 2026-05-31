@@ -165,7 +165,7 @@ test/
     "test": "bun test",
     "test:unit": "bun test test/unit test/components",
     "test:e2e": "bun test test/e2e test/smoke",
-    "test:ci": "bun test --reporter=junit --reporter-outfile=./junit.xml"
+    "test:ci": "bun -e \"import { mkdirSync } from 'node:fs'; mkdirSync('./reports', { recursive: true })\" && bun test --reporter=junit --reporter-outfile=./reports/junit.xml"
   }
 }
 ```
