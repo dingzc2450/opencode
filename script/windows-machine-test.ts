@@ -111,7 +111,6 @@ async function checkJunctionSymlink() {
   const base = await fs.mkdtemp(path.join(os.tmpdir(), "opencode-win-link-"))
   const src = path.join(base, "src")
   const dst = path.join(base, "dst")
-  const linked = path.join(base, "linked")
 
   await fs.mkdir(src, { recursive: true })
   await fs.mkdir(dst, { recursive: true })
