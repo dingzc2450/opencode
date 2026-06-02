@@ -2,7 +2,7 @@ import fs from "node:fs/promises"
 import os from "node:os"
 import path from "node:path"
 
-type Check = {
+type WindowsCheck = {
   name: string
   run: () => Promise<void> | void
 }
@@ -103,7 +103,7 @@ async function checkPathExtResolution() {
     PATHEXT: ".CMD",
   })
 
-  assert(!!found, "Bun.which could not resolve command by PATHEXT")
+  assert(!!found, "resolveCommandOnPath could not resolve command by PATHEXT")
   assert(found!.toLowerCase() === cmdFile.toLowerCase(), `resolved path mismatch: ${found} !== ${cmdFile}`)
 }
 
@@ -125,7 +125,7 @@ async function checkJunctionSymlink() {
   assert(content === "ok", "failed to read file through junction symlink")
 }
 
-const checks: Check[] = [
+const checks: WindowsCheck[] = [
   {
     name: "运行平台必须是 Windows",
     run: () => {
